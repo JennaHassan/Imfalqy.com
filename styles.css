@@ -1067,19 +1067,45 @@ h4 {
 
 @media (max-width: 768px) {
   .site-header {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr auto;
     gap: 1rem;
-    justify-content: center;
+    padding: 0.75rem 1.5rem;
   }
+  
+  .logo {
+    justify-self: start;
+  }
+  
+  .logo img {
+    height: 60px;
+  }
+  
   .primary-nav {
     flex-wrap: wrap;
     justify-content: center;
+    font-size: 1.3rem;
+    gap: 1.5rem;
   }
+  
+  .header-spacer {
+    display: none;
+  }
+  
   section {
     padding: 3rem 1.5rem;
   }
+  
+  .hero {
+    min-height: 85vh;
+  }
+  
+  .hero-content {
+    padding: 3rem 1.5rem;
+  }
+  
   .projects-container {
     gap: 4rem;
+    padding: 4rem 1.5rem;
   }
   
   .project-item {
@@ -1098,6 +1124,10 @@ h4 {
   
   .project-info {
     padding: 1rem 0;
+  }
+  
+  .project-info h3 {
+    font-size: 1.2rem;
   }
   
   .phases-container {
@@ -1120,26 +1150,120 @@ h4 {
     text-align: center;
     width: 100%;
   }
+  
+  .falqi-header img {
+    width: 180px;
+  }
+  
+  .falqi-name {
+    font-size: 1.8rem;
+  }
+  
+  .company-intro-content {
+    padding: 3rem 1.5rem;
+  }
 }
 
 @media (max-width: 520px) {
   .hero {
     text-align: center;
+    min-height: 80vh;
   }
+  
   .hero-content {
     align-items: center;
+    padding: 2rem 1.5rem;
   }
+  
   .hero-ctas {
     flex-direction: column;
   }
+  
   .projects-container {
     gap: 3rem;
+    padding: 3rem 1.5rem;
   }
   
   .project-item {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .project-image-left,
+  .project-image-right {
+    min-height: 250px;
+  }
+  
+  .project-image {
+    min-height: 250px;
+  }
+  
+  .project-info {
+    padding: 1rem 0;
+  }
+  
+  .project-info h3 {
+    font-size: 1.1rem;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .primary-nav {
+    font-size: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .site-header {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .header-spacer {
+    display: none;
+  }
+  
+  .partners-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stats-grid .stat-card:nth-child(5),
+  .stats-grid .stat-card:nth-child(6) {
+    grid-column: auto;
+  }
+  
+  .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .equipment-grid .equipment-card:nth-child(n) {
+    grid-column: auto !important;
+  }
+  
+  .why-fal-section header {
+    padding: 4rem 1.5rem 3rem 1.5rem;
+  }
+  
+  .why-fal-section header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .why-fal-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .why-fal-container {
+    padding: 2rem 1.5rem;
   }
   
   .project-main {
@@ -1558,7 +1682,7 @@ h4 {
 .service-category:first-of-type .service-item {
   flex: 0 0 auto;
   width: calc((100% - 4rem) / 4);
-  min-width: 320px;
+  min-width: 280px;
   max-width: 380px;
 }
 
@@ -1768,12 +1892,34 @@ h4 {
   }
   
   .footer-logo {
-    height: 70px;
+    height: 60px;
   }
   
   .footer-info-boxes {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .service-items-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .service-category:first-of-type .service-items-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .service-category:first-of-type .service-item {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .service-category:nth-of-type(2) .service-items-grid,
+  .service-category:nth-of-type(3) .service-items-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
   .footer-box {
@@ -1888,20 +2034,33 @@ h4 {
   }
   
   .service-items-grid {
-    gap: 1.75rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .service-category:first-of-type .service-items-grid {
+    flex-direction: column;
+    align-items: stretch;
   }
   
   .service-category:first-of-type .service-item {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
+    min-width: auto;
   }
   
   .service-category:first-of-type .service-image-placeholder {
     height: 200px;
   }
   
+  .service-category:nth-of-type(2) .service-items-grid,
+  .service-category:nth-of-type(3) .service-items-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
   .service-content {
-    padding: 2rem;
+    padding: 1.5rem;
   }
   
   .service-content h4 {
@@ -1911,6 +2070,23 @@ h4 {
   .service-image-placeholder {
     height: 100px;
     padding: 0.5rem;
+  }
+  
+  .footer-logo {
+    height: 40px;
+  }
+  
+  .logo img {
+    height: 60px;
+  }
+  
+  .primary-nav {
+    font-size: 1.2rem;
+    gap: 1.5rem;
+  }
+  
+  .site-header {
+    padding: 0.5rem 1.5rem;
   }
 }
 

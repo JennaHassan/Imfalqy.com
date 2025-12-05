@@ -65,6 +65,7 @@ a {
   display: block;
 }
 
+/* Desktop Navbar Styles - applies to screens wider than 768px */
 .primary-nav {
   display: flex;
   gap: 4rem;
@@ -105,7 +106,7 @@ a {
   padding: 0 5vw 0 5vw;
   text-align: left;
   overflow: hidden;
-  background-image: url('./hero.png');
+  background-image: url('./hero.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -772,7 +773,9 @@ h4 {
 .partner-logo-box:nth-child(15),
 .partner-logo-box:nth-child(16) {
   grid-column: span 1;
-  justify-self: center;
+  height: 150px;
+  min-height: 150px;
+  max-height: 150px;
 }
 
 @media (max-width: 1200px) {
@@ -785,7 +788,9 @@ h4 {
   .partner-logo-box:nth-child(15),
   .partner-logo-box:nth-child(16) {
     grid-column: span 1;
-    justify-self: center;
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
   }
 }
 
@@ -831,18 +836,21 @@ h4 {
   transform: scale(1.05);
 }
 
-/* Specific styling for log13.png to ensure consistency */
-.partner-logo-box:nth-child(13) {
-  height: 150px;
-  min-height: 150px;
-  max-height: 150px;
+/* Ensure all partner logo boxes have consistent sizing */
+.partner-logo-box:nth-child(13),
+.partner-logo-box:nth-child(14),
+.partner-logo-box:nth-child(15),
+.partner-logo-box:nth-child(16) {
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-.partner-logo-box:nth-child(13) img {
+.partner-logo-box:nth-child(13) img,
+.partner-logo-box:nth-child(14) img,
+.partner-logo-box:nth-child(15) img,
+.partner-logo-box:nth-child(16) img {
   max-width: 100%;
   max-height: 100px;
   width: auto;
@@ -1161,7 +1169,7 @@ h4 {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 769px) {
   .primary-nav {
     gap: 0.75rem;
     font-size: 0.85rem;
@@ -1208,12 +1216,22 @@ h4 {
   }
 }
 
+/* Phone Navbar Styles - applies to screens 768px and smaller */
 @media (max-width: 768px) {
   .site-header {
     grid-template-columns: 1fr;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
     justify-items: center;
+  }
+  
+  /* Add scroll offset for anchor links on mobile to account for sticky header */
+  #why-fal,
+  #about,
+  #services-detailed,
+  #projects,
+  #services {
+    scroll-margin-top: 120px;
   }
   
   .logo {
@@ -1229,16 +1247,11 @@ h4 {
     flex-wrap: nowrap;
     justify-content: center;
     font-size: 1rem;
-    gap: 0.75rem;
+    gap: 0.8rem;
     order: 2;
     width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  
-  .primary-nav::-webkit-scrollbar {
-    display: none;
+    padding-right: 0;
+    justify-self: center;
   }
   
   .primary-nav a {
@@ -1252,6 +1265,79 @@ h4 {
   
   section {
     padding: 3rem 1.5rem;
+  }
+  
+  .falqi-section {
+    padding: 3rem 1.5rem 6rem 1.5rem;
+    margin-bottom: 3rem;
+    overflow: visible;
+  }
+  
+  .falqi-content {
+    height: auto;
+    gap: 2rem;
+    overflow: visible;
+  }
+  
+  .falqi-sections-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    overflow: visible;
+    display: grid;
+  }
+  
+  /* Style boxes to match desktop on mobile */
+  .falqi-positions-section,
+  .falqi-contributions-section,
+  .falqi-image-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .falqi-image-box {
+    order: 1;
+    margin-bottom: 0;
+  }
+  
+  .falqi-image-box img {
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .falqi-positions-section {
+    order: 2;
+    margin-bottom: 2rem;
+  }
+  
+  .falqi-contributions-section {
+    order: 3;
+    margin-bottom: 2rem;
+  }
+  
+  .falqi-bio-section {
+    margin-bottom: 2rem;
+  }
+  
+  .services-detailed {
+    margin-top: 3rem;
+    position: relative;
+  }
+  
+  .mission-vision-section {
+    padding: 2rem 0 3rem 0;
+    margin-top: 0;
   }
   
   .hero {
@@ -1323,6 +1409,7 @@ h4 {
   }
 }
 
+/* Small Phone Navbar Styles - applies to screens 520px and smaller (overrides 768px styles) */
 @media (max-width: 520px) {
   .hero {
     text-align: center;
@@ -1370,9 +1457,10 @@ h4 {
   }
   
   .primary-nav {
-    font-size: 0.85rem;
-    gap: 0.5rem;
-    flex-wrap: nowrap;
+    font-size: 1rem;
+    gap: 0.7rem;
+    padding-left: 0;
+    justify-self: start;
   }
   
   .site-header {
@@ -1382,8 +1470,95 @@ h4 {
     justify-items: center;
   }
   
+  /* Add scroll offset for anchor links on smaller phones */
+  #why-fal,
+  #about,
+  #services-detailed,
+  #projects,
+  #services {
+    scroll-margin-top: 100px;
+  }
+  
   .logo {
     justify-self: center;
+    order: 1;
+  }
+  
+  .primary-nav {
+    justify-content: center;
+  }
+  
+  .falqi-section {
+    padding: 2.5rem 1rem 6rem 1rem;
+    margin-bottom: 3rem;
+    overflow: visible;
+  }
+  
+  .falqi-content {
+    height: auto;
+    gap: 2rem;
+    overflow: visible;
+  }
+  
+  .falqi-sections-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    overflow: visible;
+    display: grid;
+  }
+  
+  /* Style boxes to match desktop on mobile */
+  .falqi-positions-section,
+  .falqi-contributions-section,
+  .falqi-image-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .falqi-image-box {
+    order: 1;
+    margin-bottom: 0;
+  }
+  
+  .falqi-image-box img {
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .falqi-positions-section {
+    order: 2;
+    margin-bottom: 2rem;
+  }
+  
+  .falqi-contributions-section {
+    order: 3;
+    margin-bottom: 2rem;
+  }
+  
+  .falqi-bio-section {
+    margin-bottom: 2rem;
+  }
+  
+  .services-detailed {
+    margin-top: 3rem;
+    position: relative;
+  }
+  
+  .mission-vision-section {
+    padding: 2rem 0 3rem 0;
+    margin-top: 0;
   }
   
   .header-spacer {
@@ -1412,6 +1587,32 @@ h4 {
   
   .equipment-grid .equipment-card:nth-child(n) {
     grid-column: auto !important;
+  }
+  
+  /* Industrial Plants - each box on its own like Our Impact in Numbers */
+  .why-fal-plants .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: stretch;
+  }
+  
+  .why-fal-plants .equipment-grid .equipment-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* Center Cranes (final box) at the bottom on mobile */
+  .why-fal-equipment .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: stretch;
+  }
+  
+  .why-fal-equipment .equipment-grid .equipment-card:nth-child(11) {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .why-fal-section header {
@@ -1466,7 +1667,7 @@ h4 {
   min-height: 60vh;
   background-color: var(--white);
   color: var(--navy);
-  background-image: url('./falu2 copy.png');
+  background-image: url('./falu2 copy.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1537,11 +1738,12 @@ h4 {
   position: relative;
   padding: 4rem 5vw 8rem 5vw;
   background-color: var(--white);
-  background-image: url('./faly.jpeg');
+  background-image: url('./faly.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
+  margin-bottom: 0;
 }
 
 .falqi-section::before {
@@ -1597,27 +1799,6 @@ h4 {
   width: 100%;
 }
 
-.falqi-image-box {
-  background-color: rgba(255, 255, 255, 0.85);
-  border: 2px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  height: 100%;
-}
-
-.falqi-image-box img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
 
 .falqi-bio {
   color: var(--navy);
@@ -1664,15 +1845,8 @@ h4 {
   gap: 3rem;
   max-width: 1200px;
   width: 100%;
-  height: 550px;
 }
 
-.falqi-sections-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  align-items: stretch;
-}
 
 .falqi-name {
   color: var(--navy);
@@ -1696,17 +1870,7 @@ h4 {
 }
 
 
-.falqi-positions-section,
-.falqi-contributions-section {
-  background-color: rgba(255, 255, 255, 0.85);
-  border: 2px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+
 
 .falqi-section-title {
   color: var(--navy);
@@ -1782,11 +1946,12 @@ h4 {
   transition: all 0.25s ease;
   font-family: var(--heading);
   align-self: center;
-  margin-top: 1rem;
+  margin-top: auto;
 }
 
-.falqi-contributions-section .falqi-read-more-btn {
-  margin-top: 0.75rem;
+.falqi-read-more-btn {
+  margin-top: auto;
+  align-self: center;
 }
 
 .falqi-read-more-btn:hover {
@@ -1809,7 +1974,7 @@ h4 {
   position: relative;
   padding: 2rem 0 3rem 0;
   background-color: var(--white);
-  background-image: url('./falu2 copy.png');
+  background-image: url('./falu2 copy.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1835,16 +2000,6 @@ h4 {
   padding: 0 5vw;
 }
 
-.mission-vision-item {
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 1.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-  max-width: 100%;
-}
 
 .mission-vision-item h2 {
   color: var(--navy);
@@ -1874,11 +2029,26 @@ h4 {
   margin-bottom: 1rem;
 }
 
+.falqi-section {
+  overflow: visible; /* allow the content to grow and push the next section down */
+  margin-bottom: 0;
+}
+
+.services-detailed {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.falqi-content {
+  height: auto;      /* remove the fixed 550px height */
+}
+
 /* Services Detailed Section */
 .services-detailed {
   padding: 0;
   background-color: var(--white);
   position: relative;
+  margin-top: 0;
 }
 
 .services-detailed header {
@@ -2422,11 +2592,6 @@ h4 {
     height: 60px;
   }
   
-  .primary-nav {
-    font-size: 1.2rem;
-    gap: 1.5rem;
-  }
-  
   .site-header {
     padding: 0.5rem 1.5rem;
   }
@@ -2449,8 +2614,8 @@ h4 {
   height: 100%;
   background-image: 
     url('./high1.jpg'),
-    url('./high2.jpeg'),
-    url('./high3.jpeg'),
+    url('./high2.jpg'),
+    url('./high3.jpg'),
     url('./exca.JPG'),
     url('./high4.jpeg');
   background-size: 
@@ -2668,4 +2833,412 @@ h4 {
 .stat-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(244, 161, 26, 0.15);
-  bo
+  border-color: rgba(244, 161, 26, 0.3);
+}
+
+
+.stat-number {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--heading);
+  margin-bottom: 0.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 1.05rem;
+  color: var(--navy);
+  opacity: 0.85;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+}
+
+.equipment-grid .equipment-card:nth-child(1),
+.equipment-grid .equipment-card:nth-child(2),
+.equipment-grid .equipment-card:nth-child(3) {
+  grid-column: span 1;
+}
+
+.equipment-grid .equipment-card:nth-child(1) {
+  grid-column: 2;
+}
+
+.equipment-grid .equipment-card:nth-child(2) {
+  grid-column: 3;
+}
+
+.equipment-grid .equipment-card:nth-child(3) {
+  grid-column: 4;
+}
+
+.equipment-grid .equipment-card:nth-child(4),
+.equipment-grid .equipment-card:nth-child(5),
+.equipment-grid .equipment-card:nth-child(6) {
+  grid-column: span 1;
+}
+
+.equipment-grid .equipment-card:nth-child(4) {
+  grid-column: 2;
+}
+
+.equipment-grid .equipment-card:nth-child(5) {
+  grid-column: 3;
+}
+
+.equipment-grid .equipment-card:nth-child(6) {
+  grid-column: 4;
+}
+
+.equipment-grid .equipment-card:nth-child(7) {
+  grid-column: 1;
+}
+
+.equipment-grid .equipment-card:nth-child(8) {
+  grid-column: 2;
+}
+
+.equipment-grid .equipment-card:nth-child(9) {
+  grid-column: 3;
+}
+
+.equipment-grid .equipment-card:nth-child(10) {
+  grid-column: 4;
+}
+
+.equipment-grid .equipment-card:nth-child(11) {
+  grid-column: 5;
+}
+
+.equipment-grid .equipment-card {
+  max-width: 240px;
+  width: 100%;
+}
+
+.equipment-card {
+  background: linear-gradient(135deg, var(--white) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(244, 161, 26, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.equipment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(244, 161, 26, 0.5) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.equipment-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.equipment-card.visible::before {
+  transform: scaleX(1);
+}
+
+.equipment-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(244, 161, 26, 0.15);
+  border-color: rgba(244, 161, 26, 0.3);
+}
+
+.equipment-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.equipment-number {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--heading);
+  margin-bottom: 0.65rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.equipment-label {
+  font-size: 0.95rem;
+  color: var(--navy);
+  opacity: 0.85;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.featured-equipment-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.featured-equipment-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.featured-equipment-image {
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.featured-equipment-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.featured-equipment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.featured-equipment-title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--navy);
+  font-family: var(--heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.featured-equipment-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--navy);
+  opacity: 0.85;
+  margin: 0;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .stat-card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .equipment-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .equipment-grid .equipment-card:nth-child(n) {
+    grid-column: auto !important;
+  }
+  
+  .equipment-grid .equipment-card {
+    max-width: 100%;
+  }
+  
+  .equipment-card {
+    padding: 2.5rem 2rem;
+  }
+  
+  .featured-equipment-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-fal-hero {
+    padding: 6rem 5vw 4rem 5vw;
+  }
+  
+  .why-fal-stats,
+  .why-fal-plants,
+  .why-fal-equipment,
+  .why-fal-featured {
+    padding: 4rem 0;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stats-grid .stat-card:nth-child(5),
+  .stats-grid .stat-card:nth-child(6),
+  .stats-grid .stat-card:nth-child(7) {
+    grid-column: auto;
+  }
+  
+  .equipment-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .equipment-grid .equipment-card:nth-child(n) {
+    grid-column: auto !important;
+  }
+  
+  .equipment-grid .equipment-card {
+    max-width: 100%;
+  }
+  
+  .stat-card,
+  .equipment-card {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .equipment-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Industrial Plants - each box on its own like Our Impact in Numbers */
+  .why-fal-plants .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: stretch;
+  }
+  
+  .why-fal-plants .equipment-grid .equipment-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* Center Cranes (final box) at the bottom on mobile */
+  .why-fal-equipment .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: stretch;
+  }
+  
+  .why-fal-equipment .equipment-grid .equipment-card:nth-child(11) {
+    max-width: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .why-fal-badges {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .badge {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Desktop About Us Section - min-width: 992px */
+@media (min-width: 992px) {
+  .falqi-sections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+  }
+
+  .falqi-positions-section,
+  .falqi-contributions-section {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .falqi-image-box {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .falqi-image-box img {
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .mission-vision-item {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    max-width: 100%;
+    grid-row: 2;
+    grid-column: 1 / span 3;
+  }
+}
+
+

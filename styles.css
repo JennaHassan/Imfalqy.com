@@ -528,7 +528,7 @@ h4 {
 }
 
 .project-info .project-details {
-  display: block;
+  display: flex;
   margin-top: 1.5rem;
   background-color: var(--white);
   padding: 2rem;
@@ -537,18 +537,33 @@ h4 {
   text-align: center;
   width: 100%;
   max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.project-info .project-details:not(:has(.project-detail-item)) {
+  display: block;
+  flex-direction: column;
 }
 
 .project-info .project-details:empty {
   display: none;
 }
 
-.project-info .project-details p {
+.project-info .project-details > p {
   color: var(--navy);
   font-size: 1.1rem;
   line-height: 1.8;
   margin: 0 0 1.5rem 0;
   text-align: center;
+  width: 100%;
+  flex-basis: 100%;
+}
+
+.project-info .project-details p:last-child {
+  margin-bottom: 0;
 }
 
 .project-info .project-details p strong {
@@ -573,6 +588,33 @@ h4 {
 
 .project-info .project-details p:last-child {
   margin-bottom: 0;
+}
+
+
+.project-detail-item {
+  display: flex;
+  align-items: center;
+}
+
+.project-detail-item p {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.project-detail-item p strong {
+  color: var(--navy);
+  font-weight: 600;
+  display: inline;
+}
+
+.project-detail-divider {
+  width: 2px;
+  height: 40px;
+  background-color: var(--accent);
+  flex-shrink: 0;
 }
 
 .phases-container {
